@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Money Management App
 
-## Getting Started
+A modern, feature-rich personal finance application built with Next.js 16, Shadcn UI, and Supabase.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Core Functionality
+*   **Transaction Management:** Record Income, Expenses, and Transfers between wallets.
+*   **Multi-Wallet Support:** Manage multiple accounts (Cash, Bank, E-Wallet).
+*   **Custom Categories:** Create, edit, and personalize transaction categories with colors.
+*   **Monthly Budgeting:** Set budget limits per category and track progress in real-time.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Analytics & Reporting
+*   **Interactive Dashboard:** Quick summary of balance, recent activity, and budget status.
+*   **Detailed Analytics:** Visual Pie Charts and Bar Charts for spending analysis (6-month history).
+*   **Data Export:** Export transaction history to CSV for external analysis.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### User Experience
+*   **Mobile First Design:** Optimized layout for mobile devices with Floating Action Button (FAB).
+*   **Dark Mode:** Fully supported light and dark themes.
+*   **Command Palette (`Ctrl+K`):** Quick navigation and actions for power users.
+*   **Advanced Filtering:** Filter transactions by date range, type, and search queries.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+*   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Database:** [PostgreSQL](https://postgresql.org) (via [Supabase](https://supabase.com/))
+*   **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
+*   **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Charts:** [Recharts](https://recharts.org/)
+*   **Authentication:** Supabase Auth
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/wayosu/money-manager.git
+    cd money-manager
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-## Deploy on Vercel
+3.  **Set up Environment Variables:**
+    Create a `.env` file in the root directory and add your Supabase credentials:
+    ```env
+    DATABASE_URL=postgres://user:password@host:port/db
+    NEXT_PUBLIC_SUPABASE_URL=your-project-url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  **Run Database Migrations:**
+    Push the schema to your Supabase database:
+    ```bash
+    npx drizzle-kit push
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5.  **Start Development Server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🚀 Deployment
+
+This project is optimized for deployment on [Vercel](https://vercel.com/).
+
+1.  Push your code to GitHub.
+2.  Import the project in Vercel.
+3.  Add the Environment Variables in Vercel settings.
+4.  Deploy!
+
+## 📂 Project Structure
+
+*   `actions/`: Server Actions for backend logic (DB operations).
+*   `app/`: Next.js App Router pages and layouts.
+*   `components/`: Reusable UI components.
+    *   `ui/`: Shadcn primitives.
+    *   `dashboard/`, `transactions/`, `categories/`: Feature-specific components.
+*   `db/`: Database schema and connection config.
+*   `lib/`: Utility functions and Supabase client.
+*   `types/`: TypeScript interface definitions.
+
+## 📝 License
+
+MIT License.
