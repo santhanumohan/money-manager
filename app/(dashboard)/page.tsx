@@ -68,7 +68,7 @@ export default async function DashboardPage() {
             ));
 
         return {
-            category: budget.category.name,
+            category: budget.category?.name ?? 'Uncategorized',
             spent: Number(result[0]?.total || 0),
             limit: Number(budget.amount)
         };
