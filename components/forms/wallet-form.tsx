@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
-    name: z.string().min(1, 'Nama wajib diisi'),
+    name: z.string().min(1, 'Name is required'),
     balance: z.coerce.number().default(0),
     color: z.string().optional(),
 });
@@ -52,12 +52,12 @@ export function WalletForm({ onSuccess, defaultValues, walletId }: WalletFormPro
         setLoading(false);
 
         if (result?.success) {
-            toast.success(walletId ? "Dompet berhasil diperbarui" : "Dompet berhasil dibuat");
+            toast.success(walletId ? "Wallet updated successfully" : "Wallet created successfully");
             form.reset();
             onSuccess();
         } else {
             console.error(result?.error);
-            toast.error(walletId ? "Gagal memperbarui dompet" : "Gagal membuat dompet");
+            toast.error(walletId ? "Failed to update wallet" : "Failed to create wallet");
         }
     }
 
@@ -69,9 +69,9 @@ export function WalletForm({ onSuccess, defaultValues, walletId }: WalletFormPro
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nama</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Tunai, Bank, dll." {...field} />
+                                <Input placeholder="Cash, Bank, etc." {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -83,7 +83,7 @@ export function WalletForm({ onSuccess, defaultValues, walletId }: WalletFormPro
                         name="balance"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Saldo Awal</FormLabel>
+                                <FormLabel>Starting Balance</FormLabel>
                                 <FormControl>
                                     <Input type="number" step="0.01" placeholder="0.00" {...field} />
                                 </FormControl>
@@ -96,7 +96,7 @@ export function WalletForm({ onSuccess, defaultValues, walletId }: WalletFormPro
                         name="color"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Warna</FormLabel>
+                                <FormLabel>Color</FormLabel>
                                 <FormControl>
                                     <div className="flex items-center gap-2">
                                         <Input type="color" className="w-12 h-10 p-1 cursor-pointer" {...field} />
@@ -117,10 +117,10 @@ export function WalletForm({ onSuccess, defaultValues, walletId }: WalletFormPro
                 </div>
                 <DialogFooter className="gap-2 sm:gap-0">
                     <Button type="button" variant="outline" onClick={onSuccess}>
-                        Batal
+                        Cancel
                     </Button>
                     <Button type="submit" disabled={loading}>
-                        {loading ? 'Menyimpan...' : 'Simpan Dompet'}
+                        {loading ? 'Saving...' : 'Save wallet'}
                     </Button>
                 </DialogFooter>
             </form>

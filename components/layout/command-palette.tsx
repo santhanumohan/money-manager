@@ -49,51 +49,51 @@ export function CommandPalette() {
         className="w-full justify-start text-sm text-muted-foreground sm:w-64 sm:pr-12 md:w-80 lg:w-96 relative"
         onClick={() => setOpen(true)}
       >
-        <span className="hidden lg:inline-flex">Cari menu atau aksi...</span>
-        <span className="inline-flex lg:hidden">Cari...</span>
+        <span className="hidden lg:inline-flex">Search menus or actions...</span>
+        <span className="inline-flex lg:hidden">Search...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Ketik perintah atau cari..." />
+        <CommandInput placeholder="Type a command or search..." />
         <CommandList>
-          <CommandEmpty>Tidak ada hasil ditemukan.</CommandEmpty>
-          <CommandGroup heading="Navigasi">
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Navigation">
             <CommandItem onSelect={() => runCommand(() => router.push('/'))}>
               <LayoutDashboard className="mr-2 h-4 w-4" />
               <span>Dashboard</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push('/transactions'))}>
               <ArrowRightLeft className="mr-2 h-4 w-4" />
-              <span>Transaksi</span>
+              <span>Transactions</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push('/categories'))}>
               <Tags className="mr-2 h-4 w-4" />
-              <span>Kategori</span>
+              <span>Categories</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push('/wallets'))}>
               <Wallet className="mr-2 h-4 w-4" />
-              <span>Dompet</span>
+              <span>Wallets</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push('/analytics'))}>
               <PieChart className="mr-2 h-4 w-4" />
-              <span>Analitik</span>
+              <span>Analytics</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push('/settings'))}>
               <Settings className="mr-2 h-4 w-4" />
-              <span>Pengaturan</span>
+              <span>Settings</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Aksi Cepat">
+          <CommandGroup heading="Quick Actions">
             <CommandItem onSelect={() => runCommand(() => router.push('/transactions?action=new'))}>
               <Plus className="mr-2 h-4 w-4" />
-              <span>Tambah Transaksi Baru</span>
+              <span>Add new transaction</span>
             </CommandItem>
              <CommandItem onSelect={() => runCommand(() => router.push('/categories?action=new'))}>
               <Plus className="mr-2 h-4 w-4" />
-              <span>Tambah Kategori Baru</span>
+              <span>Add new category</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>

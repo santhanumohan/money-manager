@@ -9,7 +9,7 @@ import { eq, and } from 'drizzle-orm';
 import { ActionState } from '@/types/actions';
 
 const categorySchema = z.object({
-    name: z.string().min(1, "Nama kategori wajib diisi"),
+    name: z.string().min(1, "Category name is required"),
     type: z.enum(['income', 'expense']),
     color: z.string().optional(),
 });
@@ -46,7 +46,7 @@ export async function createCategory(formData: FormData): Promise<ActionState> {
         });
 
         if (existing) {
-            return { error: 'Kategori dengan nama ini sudah ada' };
+            return { error: 'A category with this name already exists' };
         }
 
         await db.insert(categories).values({
@@ -120,7 +120,7 @@ export async function deleteCategory(id: string): Promise<ActionState> {
         return { success: true };
     } catch (error) {
         console.error('Failed to delete category:', error);
-        return { error: 'Gagal menghapus kategori. Pastikan tidak ada transaksi yang terhubung.' };
+        return { error: 'Failed to delete category. Make sure no transactions are linked.' };
     }
 }
 

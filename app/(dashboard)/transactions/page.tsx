@@ -87,7 +87,7 @@ export default async function TransactionsPage({
     return (
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 className="text-3xl font-bold tracking-tight">Transaksi</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Transactions</h2>
                 <div className="flex gap-2">
                     <ExportButton />
                     <CreateTransactionDialog wallets={userWallets} categories={userCategories} />

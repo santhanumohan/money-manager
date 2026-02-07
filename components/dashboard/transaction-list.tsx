@@ -4,7 +4,7 @@ import { formatCurrency } from '@/lib/utils';
 import { format } from 'date-fns';
 import { ArrowDownLeft, ArrowUpRight, ArrowRightLeft, MoreHorizontal, Pencil, Trash } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { id } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -44,17 +44,17 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
     const handleDelete = async (id: string) => {
         const result = await deleteTransaction(id);
         if (result.success) {
-            toast.success("Transaksi berhasil dihapus");
+            toast.success("Transaction deleted successfully");
             setDeletingId(null);
         } else {
-            toast.error("Gagal menghapus transaksi");
+            toast.error("Failed to delete transaction");
         }
     };
 
     if (transactions.length === 0) {
         return (
             <div className="text-center py-10 text-muted-foreground">
-                Belum ada transaksi.
+                No transactions yet.
             </div>
         );
     }
@@ -78,11 +78,11 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                             <div>
                                 <p className="font-medium">
                                     {transaction.type === 'transfer' && transaction.targetWallet
-                                        ? `Transfer ke ${transaction.targetWallet.name}`
-                                        : transaction.description || 'Tanpa Keterangan'}
+                                        ? `Transfer to ${transaction.targetWallet.name}`
+                                        : transaction.description || 'No description'}
                                 </p>
                                 <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                                    {format(new Date(transaction.date), 'dd MMMM yyyy', { locale: id })} • {transaction.category?.name || 'Umum'}
+                                    {format(new Date(transaction.date), 'dd MMMM yyyy', { locale: enUS })} • {transaction.category?.name || 'General'}
                                 </p>
                             </div>
                         </div>
@@ -105,13 +105,13 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>Aksi</DropdownMenuLabel>
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                     <DropdownMenuItem onClick={() => setEditingTransaction(transaction)}>
                                         <Pencil className="mr-2 h-4 w-4" /> Edit
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem className="text-red-600" onClick={() => setDeletingId(transaction.id)}>
-                                        <Trash className="mr-2 h-4 w-4" /> Hapus
+                                        <Trash className="mr-2 h-4 w-4" /> Delete
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
@@ -138,11 +138,11 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                                 <div>
                                     <p className="font-medium text-sm line-clamp-1">
                                         {transaction.type === 'transfer' && transaction.targetWallet
-                                            ? `Transfer ke ${transaction.targetWallet.name}`
-                                            : transaction.description || 'Tanpa Keterangan'}
+                                            ? `Transfer to ${transaction.targetWallet.name}`
+                                            : transaction.description || 'No description'}
                                     </p>
                                     <p className="text-xs text-muted-foreground">
-                                        {transaction.category?.name || 'Umum'}
+                                        {transaction.category?.name || 'General'}
                                     </p>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                                         <Pencil className="mr-2 h-4 w-4" /> Edit
                                     </DropdownMenuItem>
                                     <DropdownMenuItem className="text-red-600" onClick={() => setDeletingId(transaction.id)}>
-                                        <Trash className="mr-2 h-4 w-4" /> Hapus
+                                        <Trash className="mr-2 h-4 w-4" /> Delete
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
@@ -165,7 +165,7 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                         
                         <div className="flex justify-between items-end pt-1 border-t">
                             <p className="text-xs text-muted-foreground" suppressHydrationWarning>
-                                {format(new Date(transaction.date), 'dd MMM yyyy', { locale: id })}
+                                {format(new Date(transaction.date), 'dd MMM yyyy', { locale: enUS })}
                             </p>
                             <div className="text-right">
                                 <p className={cn("font-bold",
@@ -195,15 +195,15 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
             <AlertDialog open={!!deletingId} onOpenChange={(open) => !open && setDeletingId(null)}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Apakah Anda yakin?</AlertDialogTitle>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            Tindakan ini tidak dapat dibatalkan. Transaksi akan dihapus permanen dan saldo dompet akan disesuaikan.
+                            This action cannot be undone. The transaction will be permanently deleted and wallet balances will be adjusted.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Batal</AlertDialogCancel>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction className="bg-red-600 hover:bg-red-700" onClick={() => deletingId && handleDelete(deletingId)}>
-                            Hapus
+                            Delete
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

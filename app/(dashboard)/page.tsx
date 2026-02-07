@@ -82,7 +82,7 @@ export default async function DashboardPage() {
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
                     <p className="text-muted-foreground mt-1">
-                        Ringkasan keuangan Anda hari ini.
+                        A snapshot of your finances today.
                     </p>
                 </div>
                 {userCategories.length === 0 && (
@@ -92,37 +92,37 @@ export default async function DashboardPage() {
 
             <div className="grid gap-4 md:grid-cols-3">
                 <SummaryCard
-                    title="Total Saldo"
+                    title="Total Balance"
                     value={formatCurrency(totalBalance)}
                     icon={Wallet}
                     iconColor="text-emerald-500"
                     iconBgColor="bg-emerald-100 dark:bg-emerald-900/20"
-                    description="Total kekayaan bersih"
+                    description="Net worth across all wallets"
                 />
                 <SummaryCard
-                    title="Total Dompet"
+                    title="Total Wallets"
                     value={userWallets.length}
                     icon={CreditCard}
                     iconColor="text-blue-500"
                     iconBgColor="bg-blue-100 dark:bg-blue-900/20"
-                    description="Akun aktif"
+                    description="Active accounts"
                 />
                 <SummaryCard
-                    title="Aktivitas Terbaru"
-                    value={`${recentTransactions.length} aktivitas`}
+                    title="Recent Activity"
+                    value={`${recentTransactions.length} activities`}
                     icon={Activity}
                     iconColor="text-violet-500"
                     iconBgColor="bg-violet-100 dark:bg-violet-900/20"
-                    description="Transaksi terakhir"
+                    description="Latest transactions"
                 />
             </div>
 
             {userWallets.length === 0 ? (
                 <div className="flex flex-col items-center justify-center p-8 text-center border rounded-lg bg-card">
                     <Wallet className="h-12 w-12 text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-semibold">Belum Ada Dompet</h3>
+                    <h3 className="text-lg font-semibold">No wallets yet</h3>
                     <p className="text-sm text-muted-foreground mb-4 max-w-sm">
-                        Mulai dengan membuat dompet pertama Anda untuk mencatat pemasukan dan pengeluaran.
+                        Create your first wallet to start tracking income and expenses.
                     </p>
                     <CreateWalletDialog />
                 </div>

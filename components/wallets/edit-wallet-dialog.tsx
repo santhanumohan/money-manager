@@ -21,9 +21,9 @@ export function EditWalletDialog({ wallet, open, onOpenChange }: EditWalletDialo
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit Dompet</DialogTitle>
+                    <DialogTitle>Edit wallet</DialogTitle>
                     <DialogDescription>
-                        Ubah detail dompet Anda di sini.
+                        Update your wallet details here.
                     </DialogDescription>
                 </DialogHeader>
                 <WalletForm

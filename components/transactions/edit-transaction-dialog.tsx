@@ -17,9 +17,9 @@ export function EditTransactionDialog({ transaction, wallets, categories, open, 
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit Transaksi</DialogTitle>
+                    <DialogTitle>Edit transaction</DialogTitle>
                     <DialogDescription>
-                        Ubah detail transaksi di bawah ini.
+                        Update the transaction details below.
                     </DialogDescription>
                 </DialogHeader>
                 <TransactionForm

@@ -34,14 +34,14 @@ export function CreateCategoryDialog() {
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
                 <Button>
-                    <Plus className="mr-2 h-4 w-4" /> Tambah Kategori
+                    <Plus className="mr-2 h-4 w-4" /> Add Category
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Buat Kategori Baru</DialogTitle>
+                    <DialogTitle>Create a new category</DialogTitle>
                     <DialogDescription>
-                        Tambahkan kategori baru untuk mengelompokkan transaksi Anda.
+                        Add a category to group your transactions.
                     </DialogDescription>
                 </DialogHeader>
                 <CategoryForm onSuccess={() => handleOpenChange(false)} />

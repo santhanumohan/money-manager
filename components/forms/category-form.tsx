@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
-    name: z.string().min(1, 'Nama wajib diisi'),
+    name: z.string().min(1, 'Name is required'),
     type: z.enum(['income', 'expense']),
     color: z.string().optional(),
 });
@@ -53,12 +53,12 @@ export function CategoryForm({ onSuccess, defaultValues, categoryId }: CategoryF
         setLoading(false);
 
         if (result?.success) {
-            toast.success(categoryId ? "Kategori berhasil diperbarui" : "Kategori berhasil dibuat");
+            toast.success(categoryId ? "Category updated successfully" : "Category created successfully");
             if (!categoryId) form.reset();
             onSuccess();
         } else {
             console.error(result?.error);
-            toast.error(result?.error as string || "Gagal menyimpan kategori");
+            toast.error(result?.error as string || "Failed to save category");
         }
     }
 
@@ -70,9 +70,9 @@ export function CategoryForm({ onSuccess, defaultValues, categoryId }: CategoryF
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nama</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Makanan, Gaji, dll." {...field} />
+                                <Input placeholder="Food, Salary, etc." {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -84,16 +84,16 @@ export function CategoryForm({ onSuccess, defaultValues, categoryId }: CategoryF
                         name="type"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Tipe</FormLabel>
+                                <FormLabel>Type</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Pilih tipe" />
+                                            <SelectValue placeholder="Select type" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="income">Pemasukan</SelectItem>
-                                        <SelectItem value="expense">Pengeluaran</SelectItem>
+                                        <SelectItem value="income">Income</SelectItem>
+                                        <SelectItem value="expense">Expense</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -105,7 +105,7 @@ export function CategoryForm({ onSuccess, defaultValues, categoryId }: CategoryF
                         name="color"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Warna</FormLabel>
+                                <FormLabel>Color</FormLabel>
                                 <FormControl>
                                     <div className="flex items-center gap-2">
                                         <Input type="color" className="w-12 h-10 p-1 cursor-pointer" {...field} />
@@ -126,10 +126,10 @@ export function CategoryForm({ onSuccess, defaultValues, categoryId }: CategoryF
                 </div>
                 <DialogFooter className="gap-2 sm:gap-0">
                     <Button type="button" variant="outline" onClick={onSuccess}>
-                        Batal
+                        Cancel
                     </Button>
                     <Button type="submit" disabled={loading}>
-                        {loading ? 'Menyimpan...' : 'Simpan Kategori'}
+                        {loading ? 'Saving...' : 'Save category'}
                     </Button>
                 </DialogFooter>
             </form>

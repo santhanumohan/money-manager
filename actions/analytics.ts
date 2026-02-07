@@ -112,7 +112,7 @@ export async function getCategoryBreakdown(period: string) {
 
     // Format for chart
     return categoryExpenses.map(item => ({
-        name: item.categoryName || 'Tanpa Kategori',
+        name: item.categoryName || 'Uncategorized',
         value: Number(item.amount),
         color: item.categoryColor || '#94a3b8', // default slate-400
     }));
@@ -157,4 +157,3 @@ export async function getPeriodSummary(period: string) {
         savings: income - expense
     };
 }
-

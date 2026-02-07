@@ -47,17 +47,17 @@ export function WalletsList({ wallets }: WalletsListProps) {
     const handleDelete = async (id: string) => {
         const result = await deleteWallet(id);
         if (result.success) {
-            toast.success("Dompet berhasil dihapus");
+            toast.success("Wallet deleted successfully");
             setDeletingId(null);
         } else {
-            toast.error("Gagal menghapus dompet");
+            toast.error("Failed to delete wallet");
         }
     };
 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold tracking-tight">Dompet</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Wallets</h2>
                 <CreateWalletDialog />
             </div>
 
@@ -76,13 +76,13 @@ export function WalletsList({ wallets }: WalletsListProps) {
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>Aksi</DropdownMenuLabel>
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                     <DropdownMenuItem onClick={() => setEditingWallet(wallet)}>
                                         <Pencil className="mr-2 h-4 w-4" /> Edit
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem className="text-red-600" onClick={() => setDeletingId(wallet.id)}>
-                                        <Trash className="mr-2 h-4 w-4" /> Hapus
+                                        <Trash className="mr-2 h-4 w-4" /> Delete
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
@@ -96,7 +96,7 @@ export function WalletsList({ wallets }: WalletsListProps) {
                 ))}
                 {wallets.length === 0 && (
                     <div className="col-span-full text-center text-muted-foreground py-10">
-                        Tidak ada dompet ditemukan. Buat satu untuk memulai.
+                        No wallets found. Create one to get started.
                     </div>
                 )}
             </div>
@@ -112,25 +112,25 @@ export function WalletsList({ wallets }: WalletsListProps) {
             <AlertDialog open={!!deletingId} onOpenChange={(open) => !open && setDeletingId(null)}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Hapus Dompet ini?</AlertDialogTitle>
+                        <AlertDialogTitle>Delete this wallet?</AlertDialogTitle>
                         <AlertDialogDescription asChild>
                             <div className="space-y-2 text-muted-foreground text-sm">
                                 <p>
-                                    Tindakan ini <strong>tidak dapat dibatalkan</strong>.
+                                    This action <strong>cannot be undone</strong>.
                                 </p>
                                 <p className="text-red-600 dark:text-red-400 font-medium">
-                                    Peringatan: Menghapus dompet ini akan menghapus semua riwayat transaksi (Pemasukan & Pengeluaran) yang terkait secara permanen.
+                                    Warning: deleting this wallet will permanently remove all related transaction history (income and expenses).
                                 </p>
                                 <p>
-                                    Untuk transaksi Transfer, catatan pada dompet lawan akan tetap ada namun info dompet ini akan hilang.
+                                    For transfers, the counterpart wallet record will remain, but this wallet info will be removed.
                                 </p>
                             </div>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Batal</AlertDialogCancel>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={() => deletingId && handleDelete(deletingId)}>
-                            Ya, Hapus Permanen
+                            Yes, delete permanently
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

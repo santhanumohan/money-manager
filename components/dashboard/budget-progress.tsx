@@ -38,14 +38,14 @@ export function BudgetProgress({ budgets }: BudgetProgressProps) {
         return (
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <CardTitle className="text-lg font-semibold">Anggaran Bulanan</CardTitle>
+                    <CardTitle className="text-lg font-semibold">Monthly Budget</CardTitle>
                     <Button variant="ghost" size="sm" onClick={handleCopy} disabled={loading}>
                         <Copy className="h-4 w-4 mr-2" />
-                        {loading ? 'Menyalin...' : 'Salin Bulan Lalu'}
+                        {loading ? 'Copying...' : 'Copy last month'}
                     </Button>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-sm text-muted-foreground">Belum ada anggaran yang diatur untuk bulan ini.</p>
+                    <p className="text-sm text-muted-foreground">No budgets set for this month yet.</p>
                 </CardContent>
             </Card>
         );
@@ -54,7 +54,7 @@ export function BudgetProgress({ budgets }: BudgetProgressProps) {
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-lg font-semibold">Anggaran Bulanan</CardTitle>
+                <CardTitle className="text-lg font-semibold">Monthly Budget</CardTitle>
                 {/* Optional: Add Edit/Manage Budget button here */}
             </CardHeader>
             <CardContent className="space-y-6 pt-4">

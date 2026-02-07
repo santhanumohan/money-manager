@@ -27,7 +27,7 @@ export function BudgetHistoryChart({ data }: BudgetHistoryChartProps) {
     return (
         <Card className="col-span-full">
             <CardHeader>
-                <CardTitle>Riwayat Pengeluaran vs Anggaran (6 Bulan Terakhir)</CardTitle>
+                <CardTitle>Spending vs Budget (Last 6 Months)</CardTitle>
             </CardHeader>
             <CardContent className="pl-2">
                 <ResponsiveContainer width="100%" height={350}>
@@ -55,14 +55,14 @@ export function BudgetHistoryChart({ data }: BudgetHistoryChartProps) {
                         <Legend />
                         <Bar
                             dataKey="budget"
-                            name="Anggaran"
+                            name="Budget"
                             fill="#31b848ff"
                             radius={[4, 4, 0, 0]}
                             opacity={0.3}
                         />
                         <Bar
                             dataKey="spending"
-                            name="Pengeluaran"
+                            name="Spending"
                             fill="#c23c3cff"
                             radius={[4, 4, 0, 0]}
                         />

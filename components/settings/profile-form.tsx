@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 const profileSchema = z.object({
-    fullName: z.string().min(2, "Nama lengkap minimal 2 karakter"),
+    fullName: z.string().min(2, "Full name must be at least 2 characters"),
 });
 
 interface ProfileFormProps {
@@ -39,9 +39,9 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
         setLoading(false);
 
         if (result?.success) {
-            toast.success("Profil berhasil diperbarui");
+            toast.success("Profile updated successfully");
         } else {
-            toast.error(result?.error as string || "Gagal memperbarui profil");
+            toast.error(result?.error as string || "Failed to update profile");
         }
     }
 
@@ -53,16 +53,16 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                     name="fullName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nama Lengkap</FormLabel>
+                            <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Nama Anda" {...field} />
+                                <Input placeholder="Your name" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
                 <Button type="submit" disabled={loading}>
-                    {loading ? 'Menyimpan...' : 'Simpan Perubahan'}
+                    {loading ? 'Saving...' : 'Save changes'}
                 </Button>
             </form>
         </Form>
