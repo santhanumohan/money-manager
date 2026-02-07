@@ -24,7 +24,13 @@ export default async function DashboardPage() {
 
     const currentMonth = format(new Date(), 'yyyy-MM');
 
-    const [userWallets, recentTransactions, userCategories, userBudgets, historyData] = await Promise.all([
+    const [
+        userWalletsResult,
+        recentTransactionsResult,
+        userCategoriesResult,
+        userBudgetsResult,
+        historyDataResult,
+    ] = await Promise.allSettled([
         db.query.wallets.findMany({
             where: eq(wallets.userId, user.id),
         }),
@@ -50,11 +56,17 @@ export default async function DashboardPage() {
                 category: true
             }
         }),
-        getSixMonthHistory()
+        getSixMonthHistory(),
     ]);
 
+    const userWallets = userWalletsResult.status === 'fulfilled' ? userWalletsResult.value : [];
+    const recentTransactions = recentTransactionsResult.status === 'fulfilled' ? recentTransactionsResult.value : [];
+    const userCategories = userCategoriesResult.status === 'fulfilled' ? userCategoriesResult.value : [];
+    const userBudgets = userBudgetsResult.status === 'fulfilled' ? userBudgetsResult.value : [];
+    const historyData = historyDataResult.status === 'fulfilled' ? historyDataResult.value : [];
+
     // Calculate spending for each budget
-    const budgetData = await Promise.all(userBudgets.map(async (budget) => {
+    const budgetDataResults = await Promise.allSettled(userBudgets.map(async (budget) => {
         const result = await db
             .select({
                 total: sql<string>`sum(${transactions.amount})`
@@ -68,11 +80,15 @@ export default async function DashboardPage() {
             ));
 
         return {
-            category: budget.category.name,
+            category: budget.category?.name ?? 'Uncategorized',
             spent: Number(result[0]?.total || 0),
             limit: Number(budget.amount)
         };
     }));
+
+    const budgetData = budgetDataResults
+        .filter((result): result is PromiseFulfilledResult<{ category: string; spent: number; limit: number }> => result.status === 'fulfilled')
+        .map((result) => result.value);
 
     const totalBalance = userWallets.reduce((acc, wallet) => acc + Number(wallet.balance), 0);
 
