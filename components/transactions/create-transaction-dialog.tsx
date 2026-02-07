@@ -39,14 +39,14 @@ export function CreateTransactionDialog({ wallets, categories }: CreateTransacti
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
                 <Button>
-                    <Plus className="mr-2 h-4 w-4" /> Tambah Transaksi
+                    <Plus className="mr-2 h-4 w-4" /> Add Transaction
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Tambah Transaksi</DialogTitle>
+                    <DialogTitle>Add transaction</DialogTitle>
                     <DialogDescription>
-                        Masukkan detail transaksi baru di bawah ini.
+                        Enter the details for your new transaction.
                     </DialogDescription>
                 </DialogHeader>
                 <TransactionForm wallets={wallets} categories={categories} onSuccess={() => handleOpenChange(false)} />

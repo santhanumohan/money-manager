@@ -48,17 +48,17 @@ export async function exportTransactionsToCSV(query?: string, type?: string, fro
         });
 
         const csvData = data.map(t => ({
-            Tanggal: format(new Date(t.date), 'yyyy-MM-dd'),
-            Deskripsi: t.description || '',
-            Tipe: t.type === 'income' ? 'Pemasukan' : t.type === 'expense' ? 'Pengeluaran' : 'Transfer',
-            Jumlah: Number(t.amount),
-            Kategori: t.category?.name || '-',
-            'Dompet Asal': t.wallet.name,
-            'Dompet Tujuan': t.targetWallet?.name || '-',
+            Date: format(new Date(t.date), 'yyyy-MM-dd'),
+            Description: t.description || '',
+            Type: t.type === 'income' ? 'Income' : t.type === 'expense' ? 'Expense' : 'Transfer',
+            Amount: Number(t.amount),
+            Category: t.category?.name || '-',
+            'Source Wallet': t.wallet.name,
+            'Target Wallet': t.targetWallet?.name || '-',
         }));
 
         if (csvData.length === 0) {
-            return { error: 'Tidak ada data untuk diekspor' };
+            return { error: 'No data available to export' };
         }
 
         const parser = new Parser();
@@ -67,6 +67,6 @@ export async function exportTransactionsToCSV(query?: string, type?: string, fro
         return { success: true, csv };
     } catch (error) {
         console.error('Export failed:', error);
-        return { error: 'Gagal mengekspor data' };
+        return { error: 'Failed to export data' };
     }
 }

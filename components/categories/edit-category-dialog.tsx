@@ -15,9 +15,9 @@ export function EditCategoryDialog({ category, open, onOpenChange }: EditCategor
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Edit Kategori</DialogTitle>
+                    <DialogTitle>Edit category</DialogTitle>
                     <DialogDescription>
-                        Ubah detail kategori Anda di sini.
+                        Update your category details here.
                     </DialogDescription>
                 </DialogHeader>
                 <CategoryForm

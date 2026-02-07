@@ -17,9 +17,9 @@ export default async function SettingsPage() {
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
-                <h2 className="text-3xl font-bold tracking-tight">Pengaturan</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
                 <p className="text-muted-foreground mt-1">
-                    Kelola profil dan preferensi akun Anda.
+                    Manage your profile and account preferences.
                 </p>
             </div>
             <Separator />
@@ -27,9 +27,9 @@ export default async function SettingsPage() {
             <div className="grid gap-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Profil</CardTitle>
+                        <CardTitle>Profile</CardTitle>
                         <CardDescription>
-                            Informasi publik yang akan ditampilkan di akun Anda.
+                            Public information shown on your account.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -39,9 +39,9 @@ export default async function SettingsPage() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Akun</CardTitle>
+                        <CardTitle>Account</CardTitle>
                         <CardDescription>
-                            Informasi login dan keamanan.
+                            Login and security details.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4 max-w-md">
@@ -49,7 +49,7 @@ export default async function SettingsPage() {
                             <Label>Email</Label>
                             <Input value={user.email} disabled readOnly />
                             <p className="text-[0.8rem] text-muted-foreground">
-                                Email tidak dapat diubah untuk saat ini.
+                                Email cannot be changed at this time.
                             </p>
                         </div>
                     </CardContent>

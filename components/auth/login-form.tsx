@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { login } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export function LoginForm() {
-    const [state, formAction, isPending] = useActionState(login, initialState);
+    const [state, formAction] = useFormState(login, initialState);
 
     return (
         <form action={formAction} className="grid gap-4">
@@ -24,7 +24,7 @@ export function LoginForm() {
                         id="email" 
                         name="email" 
                         type="email" 
-                        placeholder="nama@contoh.com" 
+                        placeholder="name@example.com" 
                         required 
                         className="pl-9"
                     />
@@ -32,7 +32,7 @@ export function LoginForm() {
             </div>
             <div className="grid gap-2">
                 <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Kata Sandi</Label>
+                    <Label htmlFor="password">Password</Label>
                     {/* Future: Add Forgot Password Link */}
                 </div>
                 <div className="relative">
@@ -54,19 +54,27 @@ export function LoginForm() {
                 </div>
             )}
 
-            <Button className="w-full mt-2" type="submit" disabled={isPending}>
-                {isPending ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Sedang Masuk...
-                    </>
-                ) : (
-                    <>
-                        <LogIn className="mr-2 h-4 w-4" />
-                        Masuk
-                    </>
-                )}
-            </Button>
+            <SubmitButton />
         </form>
+    );
+}
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button className="w-full mt-2" type="submit" disabled={pending}>
+            {pending ? (
+                <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                </>
+            ) : (
+                <>
+                    <LogIn className="mr-2 h-4 w-4" />
+                    Sign in
+                </>
+            )}
+        </Button>
     );
 }

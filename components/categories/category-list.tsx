@@ -40,7 +40,7 @@ export function CategoryList({ categories }: CategoryListProps) {
     const handleDelete = async (id: string) => {
         const result = await deleteCategory(id);
         if (result.success) {
-            toast.success("Kategori berhasil dihapus");
+            toast.success("Category deleted successfully");
             setDeletingId(null);
         } else {
             toast.error(result.error as string);
@@ -50,7 +50,7 @@ export function CategoryList({ categories }: CategoryListProps) {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold tracking-tight">Kategori</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Categories</h2>
                 <CreateCategoryDialog />
             </div>
 
@@ -74,27 +74,27 @@ export function CategoryList({ categories }: CategoryListProps) {
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>Aksi</DropdownMenuLabel>
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                     <DropdownMenuItem onClick={() => setEditingCategory(category)}>
                                         <Pencil className="mr-2 h-4 w-4" /> Edit
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem className="text-red-600" onClick={() => setDeletingId(category.id)}>
-                                        <Trash className="mr-2 h-4 w-4" /> Hapus
+                                        <Trash className="mr-2 h-4 w-4" /> Delete
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </CardHeader>
                         <CardContent>
                             <div className="text-xs text-muted-foreground capitalize">
-                                {category.type === 'income' ? 'Pemasukan' : 'Pengeluaran'}
+                                {category.type === 'income' ? 'Income' : 'Expense'}
                             </div>
                         </CardContent>
                     </Card>
                 ))}
                 {categories.length === 0 && (
                     <div className="col-span-full text-center text-muted-foreground py-10">
-                        Belum ada kategori. Buat satu untuk memulai.
+                        No categories yet. Create one to get started.
                     </div>
                 )}
             </div>
@@ -110,17 +110,17 @@ export function CategoryList({ categories }: CategoryListProps) {
             <AlertDialog open={!!deletingId} onOpenChange={(open) => !open && setDeletingId(null)}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Hapus Kategori ini?</AlertDialogTitle>
+                        <AlertDialogTitle>Delete this category?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            Tindakan ini tidak dapat dibatalkan. 
+                            This action cannot be undone.
                             <br/><br/>
-                            <span className="text-red-500 font-bold">Peringatan:</span> Penghapusan akan gagal jika kategori ini masih digunakan oleh transaksi atau anggaran aktif.
+                            <span className="text-red-500 font-bold">Warning:</span> Deletion will fail if this category is still used by transactions or active budgets.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Batal</AlertDialogCancel>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction className="bg-red-600 hover:bg-red-700" onClick={() => deletingId && handleDelete(deletingId)}>
-                            Hapus
+                            Delete
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

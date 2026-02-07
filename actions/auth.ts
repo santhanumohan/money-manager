@@ -12,7 +12,7 @@ const loginSchema = z.object({
 });
 
 const profileSchema = z.object({
-    fullName: z.string().min(2, "Nama lengkap minimal 2 karakter").optional(),
+    fullName: z.string().min(2, "Full name must be at least 2 characters").optional(),
 });
 
 export async function updateProfile(formData: FormData): Promise<ActionState> {

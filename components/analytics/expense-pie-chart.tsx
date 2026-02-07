@@ -41,10 +41,10 @@ export function ExpensePieChart({ data }: ExpensePieChartProps) {
         return (
             <Card className="col-span-1">
                 <CardHeader>
-                    <CardTitle>Kategori Pengeluaran</CardTitle>
+                    <CardTitle>Expense Categories</CardTitle>
                 </CardHeader>
                 <CardContent className="flex items-center justify-center h-[300px] text-muted-foreground">
-                    Belum ada data pengeluaran.
+                    No expense data yet.
                 </CardContent>
             </Card>
         );
@@ -53,7 +53,7 @@ export function ExpensePieChart({ data }: ExpensePieChartProps) {
     return (
         <Card className="col-span-1">
             <CardHeader>
-                <CardTitle>Kategori Pengeluaran</CardTitle>
+                <CardTitle>Expense Categories</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="h-[300px] w-full">

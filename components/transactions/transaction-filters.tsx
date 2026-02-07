@@ -69,7 +69,7 @@ export function TransactionFilters() {
     return (
         <div className="flex flex-col lg:flex-row gap-4 mb-6">
             <Input
-                placeholder="Cari deskripsi..."
+                placeholder="Search description..."
                 onChange={(e) => handleSearch(e.target.value)}
                 defaultValue={searchParams.get('query')?.toString()}
                 className="lg:w-1/3"
@@ -80,12 +80,12 @@ export function TransactionFilters() {
                     onValueChange={handleTypeChange}
                 >
                     <SelectTrigger className="w-full sm:w-[180px]">
-                        <SelectValue placeholder="Tipe Transaksi" />
+                        <SelectValue placeholder="Transaction Type" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">Semua Tipe</SelectItem>
-                        <SelectItem value="income">Pemasukan</SelectItem>
-                        <SelectItem value="expense">Pengeluaran</SelectItem>
+                        <SelectItem value="all">All Types</SelectItem>
+                        <SelectItem value="income">Income</SelectItem>
+                        <SelectItem value="expense">Expense</SelectItem>
                         <SelectItem value="transfer">Transfer</SelectItem>
                     </SelectContent>
                 </Select>

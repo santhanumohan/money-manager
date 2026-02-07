@@ -33,9 +33,9 @@ export default async function AnalyticsPage({
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Analitik</h2>
+                    <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
                     <p className="text-muted-foreground mt-1">
-                        Laporan keuangan detail per periode.
+                        Detailed financial reports by period.
                     </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
@@ -46,28 +46,28 @@ export default async function AnalyticsPage({
 
             <div className="grid gap-4 md:grid-cols-3">
                 <SummaryCard
-                    title="Pemasukan"
+                    title="Income"
                     value={formatCurrency(summary.income)}
                     icon={TrendingUp}
                     iconColor="text-emerald-500"
                     iconBgColor="bg-emerald-100 dark:bg-emerald-900/20"
-                    description="Total pemasukan periode ini"
+                    description="Total income for this period"
                 />
                 <SummaryCard
-                    title="Pengeluaran"
+                    title="Expenses"
                     value={formatCurrency(summary.expense)}
                     icon={TrendingDown}
                     iconColor="text-red-500"
                     iconBgColor="bg-red-100 dark:bg-red-900/20"
-                    description="Total pengeluaran periode ini"
+                    description="Total expenses for this period"
                 />
                 <SummaryCard
-                    title="Tabungan Bersih"
+                    title="Net Savings"
                     value={formatCurrency(summary.savings)}
                     icon={PiggyBank}
                     iconColor="text-blue-500"
                     iconBgColor="bg-blue-100 dark:bg-blue-900/20"
-                    description="Selisih pemasukan - pengeluaran"
+                    description="Income minus expenses"
                 />
             </div>
 

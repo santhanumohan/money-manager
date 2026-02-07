@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { signup } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export function SignupForm() {
-    const [state, formAction, isPending] = useActionState(signup, initialState);
+    const [state, formAction] = useFormState(signup, initialState);
 
     return (
         <form action={formAction} className="grid gap-4">
@@ -24,14 +24,14 @@ export function SignupForm() {
                         id="email" 
                         name="email" 
                         type="email" 
-                        placeholder="nama@contoh.com" 
+                        placeholder="name@example.com" 
                         required 
                         className="pl-9"
                     />
                 </div>
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="password">Kata Sandi</Label>
+                <Label htmlFor="password">Password</Label>
                 <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input 
@@ -43,7 +43,7 @@ export function SignupForm() {
                         className="pl-9"
                     />
                 </div>
-                <p className="text-xs text-muted-foreground">Minimal 6 karakter.</p>
+                <p className="text-xs text-muted-foreground">At least 6 characters.</p>
             </div>
             
             {state?.error && (
@@ -52,19 +52,27 @@ export function SignupForm() {
                 </div>
             )}
 
-            <Button className="w-full mt-2" type="submit" disabled={isPending}>
-                {isPending ? (
-                    <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Mendaftar...
-                    </>
-                ) : (
-                    <>
-                        <UserPlus className="mr-2 h-4 w-4" />
-                        Daftar Akun
-                    </>
-                )}
-            </Button>
+            <SubmitButton />
         </form>
+    );
+}
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button className="w-full mt-2" type="submit" disabled={pending}>
+            {pending ? (
+                <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Creating account...
+                </>
+            ) : (
+                <>
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    Create account
+                </>
+            )}
+        </Button>
     );
 }

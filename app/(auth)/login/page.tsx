@@ -15,17 +15,17 @@ export default function LoginPage() {
             
             <Card className="w-full max-w-sm sm:max-w-md shadow-lg border-border/50">
                 <CardHeader className="space-y-1 text-center">
-                    <CardTitle className="text-2xl font-bold">Selamat Datang Kembali</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
                     <CardDescription>
-                        Masuk untuk mengelola keuangan Anda
+                        Sign in to manage your finances
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <LoginForm />
                     <div className="mt-6 text-center text-sm text-muted-foreground">
-                        Belum punya akun?{' '}
+                        New here?{' '}
                         <Link href="/signup" className="font-medium text-primary underline-offset-4 hover:underline">
-                            Daftar sekarang
+                            Create an account
                         </Link>
                     </div>
                 </CardContent>

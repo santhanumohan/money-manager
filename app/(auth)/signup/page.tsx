@@ -15,17 +15,17 @@ export default function SignupPage() {
 
             <Card className="w-full max-w-sm sm:max-w-md shadow-lg border-border/50">
                 <CardHeader className="space-y-1 text-center">
-                    <CardTitle className="text-2xl font-bold">Buat Akun Baru</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Create a new account</CardTitle>
                     <CardDescription>
-                        Mulai kelola keuangan Anda hari ini
+                        Start managing your finances today
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <SignupForm />
                     <div className="mt-6 text-center text-sm text-muted-foreground">
-                        Sudah punya akun?{' '}
+                        Already have an account?{' '}
                         <Link href="/login" className="font-medium text-primary underline-offset-4 hover:underline">
-                            Masuk sekarang
+                            Sign in
                         </Link>
                     </div>
                 </CardContent>

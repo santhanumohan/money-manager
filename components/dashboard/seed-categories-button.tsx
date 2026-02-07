@@ -12,10 +12,10 @@ export function SeedCategoriesButton() {
         setLoading(true);
         try {
             await seedCategories();
-            toast.success("Kategori default berhasil ditambahkan");
+            toast.success("Default categories added successfully");
         } catch (error) {
             console.error(error);
-            toast.error("Gagal menambahkan kategori");
+            toast.error("Failed to add categories");
         } finally {
             setLoading(false);
         }
@@ -23,7 +23,7 @@ export function SeedCategoriesButton() {
 
     return (
         <Button variant="outline" size="sm" onClick={handleSeed} disabled={loading}>
-            {loading ? 'Memproses...' : 'Isi Kategori Default'}
+            {loading ? 'Processing...' : 'Seed default categories'}
         </Button>
     );
 }

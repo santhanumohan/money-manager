@@ -15,31 +15,31 @@ const routes = [
         color: 'text-sky-500',
     },
     {
-        label: 'Dompet',
+        label: 'Wallets',
         icon: Wallet,
         href: '/wallets',
         color: 'text-violet-500',
     },
     {
-        label: 'Transaksi',
+        label: 'Transactions',
         icon: ArrowRightLeft,
         href: '/transactions',
         color: 'text-pink-700',
     },
     {
-        label: 'Kategori',
+        label: 'Categories',
         icon: Tags,
         href: '/categories',
         color: 'text-emerald-500',
     },
     {
-        label: 'Analitik',
+        label: 'Analytics',
         icon: PieChart,
         href: '/analytics',
         color: 'text-orange-500',
     },
     {
-        label: 'Pengaturan',
+        label: 'Settings',
         icon: Settings,
         href: '/settings',
         color: 'text-gray-500',
@@ -80,7 +80,7 @@ export function Sidebar() {
                 <form action={logout}>
                     <Button variant="ghost" className="w-full justify-start text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <LogOut className="h-5 w-5 mr-3" />
-                        Keluar
+                        Sign out
                     </Button>
                 </form>
             </div>

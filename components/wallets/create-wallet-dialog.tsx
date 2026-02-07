@@ -13,14 +13,14 @@ export function CreateWalletDialog() {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button>
-                    <Plus className="mr-2 h-4 w-4" /> Tambah Dompet
+                    <Plus className="mr-2 h-4 w-4" /> Add Wallet
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Buat Dompet Baru</DialogTitle>
+                    <DialogTitle>Create a new wallet</DialogTitle>
                     <DialogDescription>
-                        Tambahkan dompet baru untuk melacak keuangan Anda.
+                        Add a wallet to track your finances.
                     </DialogDescription>
                 </DialogHeader>
                 <WalletForm onSuccess={() => setOpen(false)} />

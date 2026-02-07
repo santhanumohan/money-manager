@@ -10,8 +10,8 @@ import { ActionState } from '@/types/actions';
 
 const budgetSchema = z.object({
     categoryId: z.string().uuid(),
-    amount: z.coerce.number().positive("Jumlah anggaran harus positif"),
-    period: z.string().regex(/^\d{4}-\d{2}$/, "Format periode harus YYYY-MM"),
+    amount: z.coerce.number().positive("Budget amount must be positive"),
+    period: z.string().regex(/^\d{4}-\d{2}$/, "Period format must be YYYY-MM"),
 });
 
 export async function setBudget(formData: FormData): Promise<ActionState> {

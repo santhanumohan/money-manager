@@ -20,14 +20,14 @@ export function MobileFAB({ wallets, categories }: MobileFABProps) {
                 <DialogTrigger asChild>
                     <Button size="icon" className="h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90">
                         <Plus className="h-6 w-6 text-primary-foreground" />
-                        <span className="sr-only">Tambah Transaksi</span>
+                        <span className="sr-only">Add transaction</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>Tambah Transaksi</DialogTitle>
+                        <DialogTitle>Add transaction</DialogTitle>
                         <DialogDescription>
-                            Masukkan detail transaksi baru di bawah ini.
+                            Enter the details for your new transaction.
                         </DialogDescription>
                     </DialogHeader>
                     <TransactionForm wallets={wallets} categories={categories} onSuccess={() => setOpen(false)} />

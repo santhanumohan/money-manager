@@ -26,13 +26,13 @@ export function ExportButton() {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', `transaksi_${new Date().toISOString().split('T')[0]}.csv`);
+            link.setAttribute('download', `transactions_${new Date().toISOString().split('T')[0]}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            toast.success('Data berhasil diekspor');
+            toast.success('Data exported successfully');
         } else {
-            toast.error(result.error || 'Gagal mengekspor data');
+            toast.error(result.error || 'Failed to export data');
         }
         setLoading(false);
     };
@@ -40,7 +40,7 @@ export function ExportButton() {
     return (
         <Button variant="outline" onClick={handleExport} disabled={loading}>
             <Download className="mr-2 h-4 w-4" />
-            {loading ? 'Mengekspor...' : 'Export CSV'}
+            {loading ? 'Exporting...' : 'Export CSV'}
         </Button>
     );
 }

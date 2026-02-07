@@ -35,13 +35,13 @@ import { CalendarIcon } from "lucide-react";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-    amount: z.coerce.number().positive("Jumlah harus lebih dari 0"),
+    amount: z.coerce.number().positive("Amount must be greater than 0"),
     type: z.enum(['income', 'expense', 'transfer']),
-    walletId: z.string().uuid("Dompet asal harus dipilih"),
+    walletId: z.string().uuid("Source wallet is required"),
     targetWalletId: z.string().uuid().optional(),
     categoryId: z.string().uuid().optional(),
     date: z.date({
-        message: "Tanggal harus dipilih",
+        message: "Date is required",
     }),
     description: z.string().optional(),
 }).refine((data) => {
@@ -53,7 +53,7 @@ const formSchema = z.object({
     }
     return true;
 }, {
-    message: "Dompet tujuan wajib diisi untuk transfer",
+    message: "Target wallet is required for transfers",
     path: ["targetWalletId"],
 });
 
@@ -101,12 +101,12 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
         setLoading(false);
 
         if (result?.success) {
-            toast.success(transactionId ? "Transaksi berhasil diperbarui" : "Transaksi berhasil disimpan");
+            toast.success(transactionId ? "Transaction updated successfully" : "Transaction saved successfully");
             if (!transactionId) form.reset();
             onSuccess();
         } else {
             console.error(result?.error);
-            toast.error(transactionId ? "Gagal memperbarui transaksi" : "Gagal menyimpan transaksi");
+            toast.error(transactionId ? "Failed to update transaction" : "Failed to save transaction");
         }
     }
 
@@ -121,16 +121,16 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                         name="type"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Tipe</FormLabel>
+                                <FormLabel>Type</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Pilih tipe" />
+                                            <SelectValue placeholder="Select type" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="income">Pemasukan</SelectItem>
-                                        <SelectItem value="expense">Pengeluaran</SelectItem>
+                                        <SelectItem value="income">Income</SelectItem>
+                                        <SelectItem value="expense">Expense</SelectItem>
                                         <SelectItem value="transfer">Transfer</SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -143,7 +143,7 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                         name="amount"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Jumlah</FormLabel>
+                                <FormLabel>Amount</FormLabel>
                                 <FormControl>
                                     <Input type="number" step="0.01" {...field} />
                                 </FormControl>
@@ -159,11 +159,11 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                         name="walletId"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Dompet Asal</FormLabel>
+                                <FormLabel>Source Wallet</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Pilih dompet" />
+                                            <SelectValue placeholder="Select a wallet" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
@@ -184,14 +184,14 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                             control={form.control}
                             name="targetWalletId"
                             render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Dompet Tujuan</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Pilih dompet tujuan" />
-                                            </SelectTrigger>
-                                        </FormControl>
+                            <FormItem>
+                                <FormLabel>Target Wallet</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a target wallet" />
+                                        </SelectTrigger>
+                                    </FormControl>
                                         <SelectContent>
                                             {wallets.map((wallet) => (
                                                 <SelectItem key={wallet.id} value={wallet.id}>
@@ -211,14 +211,14 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                             control={form.control}
                             name="categoryId"
                             render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Kategori</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Pilih kategori" />
-                                            </SelectTrigger>
-                                        </FormControl>
+                            <FormItem>
+                                <FormLabel>Category</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a category" />
+                                        </SelectTrigger>
+                                    </FormControl>
                                         <SelectContent>
                                             {filteredCategories.map((category) => (
                                                 <SelectItem key={category.id} value={category.id}>
@@ -238,7 +238,7 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                         name="date"
                         render={({ field }) => (
                             <FormItem className="flex flex-col">
-                                <FormLabel>Tanggal</FormLabel>
+                                <FormLabel>Date</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <FormControl>
@@ -252,7 +252,7 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                                                 {field.value ? (
                                                     format(field.value, "PPP")
                                                 ) : (
-                                                    <span>Pilih tanggal</span>
+                                                    <span>Select a date</span>
                                                 )}
                                                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                             </Button>
@@ -280,9 +280,9 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
                         name="description"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Deskripsi</FormLabel>
+                                <FormLabel>Description</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Belanja, Sewa, dll." {...field} />
+                                    <Input placeholder="Groceries, Rent, etc." {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -292,10 +292,10 @@ export function TransactionForm({ wallets, categories, onSuccess, defaultValues,
 
                 <DialogFooter className="gap-2 sm:gap-0">
                     <Button type="button" variant="outline" onClick={onSuccess}>
-                        Batal
+                        Cancel
                     </Button>
                     <Button type="submit" disabled={loading}>
-                        {loading ? 'Menyimpan...' : 'Simpan Transaksi'}
+                        {loading ? 'Saving...' : 'Save transaction'}
                     </Button>
                 </DialogFooter>
             </form>
