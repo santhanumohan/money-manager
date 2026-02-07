@@ -95,7 +95,7 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                                 )}>
                                     {transaction.type === 'expense' ? '-' : '+'}{formatCurrency(Number(transaction.amount))}
                                 </p>
-                                <p className="text-xs text-muted-foreground">{transaction.wallet.name}</p>
+                                <p className="text-xs text-muted-foreground">{transaction.wallet?.name ?? 'Unknown wallet'}</p>
                             </div>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -175,7 +175,7 @@ export function TransactionList({ transactions, wallets, categories }: Transacti
                                 )}>
                                     {transaction.type === 'expense' ? '-' : '+'}{formatCurrency(Number(transaction.amount))}
                                 </p>
-                                <p className="text-[10px] text-muted-foreground">{transaction.wallet.name}</p>
+                                <p className="text-[10px] text-muted-foreground">{transaction.wallet?.name ?? 'Unknown wallet'}</p>
                             </div>
                         </div>
                     </div>
